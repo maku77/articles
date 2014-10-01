@@ -590,6 +590,44 @@ Javadoc コメントには、HTML タグを含めることができるため、�
 ```
 
 ### よくない例
+#### クラス／メソッド説明で、その名前以上の情報を提供していない
+```java
+/** Frame data. */
+public class FrameData {
+```
+クラス名から得られる情報以上の情報が含まれていません。
+「クラスのコメント」のセクションを参照してください。
+
+```java
+// ダメな例
+/**
+ * Sets the tool tip text.
+ * @param text  the text of the tool tip
+ */
+public void setToolTipText(String text) {
+
+// よい例（Oracle サイトより抜粋）
+/**
+ * Registers the text to display in a tool tip. The text
+ * displays when the cursor lingers over the component.
+ *
+ * @param text  the string to display. If the text is {@code null},
+ *              the tool tip is turned off for this compornent.
+ */
+```
+API ドキュメントは、メソッド名以上の情報を提供するべきです。
+「メソッドのコメント」のセクションを参照してください。
+
+#### 実装詳細が含まれてしまっている
+```java
+/**
+ * Returns the mData.
+ */
+```
+このドキュメントはツッコミどころ満載ですが、少なくとも、ドキュメンテーションコメントは、コードを読まないでも API 仕様が分かるように記述されている必要があります。
+詳細実装に出てくる `mData` のようなワードを API ドキュメントに含めるべきではありません。
+詳細実装を修正したとたんに嘘の情報になりますし、そもそもこういった情報は、API の使用者にとって役に立ちません。
+
 #### パラメータの説明が型情報だけ
 ```java
 @param dateFormat DateFormat
@@ -600,13 +638,6 @@ Javadoc コメントには、HTML タグを含めることができるため、�
 #### 翻訳しただけ
 ```java
 @param errorType エラータイプ
-```
-情報量ゼロ。
-
-#### クラス説明がクラス名をスペースで区切っただけ
-```java
-/** Frame data. */
-public class FrameData {
 ```
 情報量ゼロ。
 
